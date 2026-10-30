@@ -1,0 +1,12 @@
+{
+  "name": "pdfolio",
+  "private": true,
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "dev": "test -x backend/.venv/bin/uvicorn || { echo 'Run `npm run setup` first.'; exit 1; }; trap 'kill 0' INT TERM EXIT; (cd backend && .venv/bin/uvicorn app.main:app --port 8000 --no-access-log --reload --reload-dir app) & npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm run build && cd backend && .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --no-access-log",
+    "test": "cd backend && .venv/bin/python -m pytest -q && cd ../frontend && npx playwright test",
+    "audit": "cd backend && .venv/bin/pip-audit -r requirements.txt && cd ../frontend && npm audit --omit=dev"
+  }
+}

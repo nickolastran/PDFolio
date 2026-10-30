@@ -1,0 +1,15 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0  # let bubblewrap create namespaces
+      - run: npm run setup
+      - run: npm run audit
+      - run: npm test

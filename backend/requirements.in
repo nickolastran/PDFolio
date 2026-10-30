@@ -1,0 +1,20 @@
+# Direct dependencies. Pinned versions live in requirements.txt (pip freeze).
+fastapi
+uvicorn[standard]
+python-multipart
+python-magic
+slowapi
+pymupdf
+pikepdf
+pillow
+defusedxml
+weasyprint
+pdf2docx
+python-pptx
+openpyxl
+ocrmypdf
+anthropic
+# dev / test
+pytest
+httpx
+pip-audit
